@@ -1,4 +1,4 @@
-   // Alert on Resize 
+    // Alert on Resize 
       let alertShown = false;
       window.addEventListener('resize',()=> {
         if (!alertShown) {
@@ -61,7 +61,7 @@
 
         // Loop just to toggle visibility
         tableRows.forEach(row => {
-          const rowCategory = row.cells[3].textContent.toLowerCase();
+          const rowCategory = row.cells[2].textContent.toLowerCase();
           if (selectedCategory === 'all' || rowCategory === selectedCategory) {
             row.style.display = '';
           } else {
@@ -72,7 +72,7 @@
         // Now calculate total for the visible rows only
         const filteredTotal = Array.from(tableRows)
           .filter(r => r.style.display !== 'none')
-          .reduce((sum, r) => sum + parseFloat(r.cells[2].textContent), 0);
+          .reduce((sum, r) => sum + parseFloat(r.cells[1].textContent), 0);
 
         // Display
         if (selectedCategory === 'all') {
@@ -100,7 +100,6 @@ const applyBtn = document.getElementById('applyFilter');
 const filteredTotalEl = document.getElementById('filteredTotal');
 
 
-
 // Open Modal 
 advancedFilters.addEventListener('change',() => {
 
@@ -126,11 +125,14 @@ filterType.addEventListener('change', () => {
   }
 });
 
+
+
 // Apply Filter Logic
-applyBtn.addEventListener('click', () => {
+modal.addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent form submission
   let total = 0;
   tableRows.forEach(row => {
-    const amount = parseFloat(row.cells[2].textContent); // amount column
+    const amount = parseFloat(row.cells[1].textContent); // amount column
     let show = false;
 
     if (filterType.value === 'greater' && amount >= parseFloat(amountInput.value)) show = true;
@@ -146,7 +148,7 @@ applyBtn.addEventListener('click', () => {
   });
 
   filteredTotalEl.textContent = `Total: $${total.toFixed(2)}`;
-  modal.style.display = 'none'; // close modal after applying
+  modal.classList.remove('active'); // close modal after applying
 });
 
 

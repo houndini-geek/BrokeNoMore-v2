@@ -21,7 +21,7 @@ button,input,select,textarea {
   --neutral-dark: #34495e;      /* Charcoal (text/contrast) */
   --error-color: #e74c3c;       /* Crimson red (alerts/errors) */
     --success-color: #27ae60;     /* Bright green (success messages) */
-    --max-width: 1500px;
+    --max-width: 1300px;
 }
 
 

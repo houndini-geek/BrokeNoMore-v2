@@ -14,19 +14,19 @@
   </head>
   <body>
     <!-- 🔝 Navigation Menu -->
-    <nav>
+    <!-- <nav>
       <ul>
         <li><a href="/reports">Reports</a></li> /
         <li><a href="/settings">Settings</a></li>
       </ul>
-    </nav>
+    </nav> -->
 
 
 
 
 <!-- Modal for Amount Filtering -->
 
-<div id="amountFilterModal" class="modal">
+<form id="amountFilterModal" class="modal">
   <div class="modal-content">
   
     <h2>Filter by Amount</h2>
@@ -42,26 +42,26 @@
     <!-- Amount Inputs -->
     <div id="singleAmountInput">
       <label for="amount">Amount:</label> <br>
-      <input type="number" id="amount" placeholder="Enter amount">
+      <input type="number" id="amount" placeholder="Enter amount" required>
     </div>
 
     <div id="rangeAmountInputs" style="display:none;">
       <label for="minAmount">Min Amount:</label>
-      <input type="number" id="minAmount" placeholder="Min amount">
+      <input type="number" id="minAmount" placeholder="Min amount" required>
       <label for="maxAmount">Max Amount:</label>
-      <input type="number" id="maxAmount" placeholder="Max amount">
+      <input type="number" id="maxAmount" placeholder="Max amount" required>
     </div>
 
     <!-- Modal Buttons -->
     <div class="modal-buttons">
-      <button id="applyFilter">Apply Filter</button>
-      <button id="cancelFilter">Cancel</button>
+      <button id="applyFilter" type="submit">Apply Filter</button>
+      <button id="cancelFilter" style="cursor: pointer;">Cancel</button>
     </div>
 
     <!-- Filtered Total
     <p id="filteredTotal">Total: $0.00</p> -->
   </div>
-</div>
+</form>
 
 
 
