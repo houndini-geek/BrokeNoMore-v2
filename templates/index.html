@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BrokeNoMore - Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <script
+     src="{{url_for('static',filename='js/main.js')}}" 
+     defer>
+    </script>
+  </head>
+  <body>
+    <!-- 🔝 Navigation Menu -->
+    <nav>
+      <ul>
+        <li><a href="/reports">Reports</a></li> /
+        <li><a href="/settings">Settings</a></li>
+      </ul>
+    </nav>
+
+
+
+
+<!-- Modal for Amount Filtering -->
+
+<div id="amountFilterModal" class="modal">
+  <div class="modal-content">
+  
+    <h2>Filter by Amount</h2>
+
+    <!-- Filter Type -->
+    <label for="filterType">Filter Type:</label>
+    <select id="filterType">
+      <option value="greater">Greater than</option>
+      <option value="less">Less than</option>
+      <option value="between">Between</option>
+    </select>
+
+    <!-- Amount Inputs -->
+    <div id="singleAmountInput">
+      <label for="amount">Amount:</label> <br>
+      <input type="number" id="amount" placeholder="Enter amount">
+    </div>
+
+    <div id="rangeAmountInputs" style="display:none;">
+      <label for="minAmount">Min Amount:</label>
+      <input type="number" id="minAmount" placeholder="Min amount">
+      <label for="maxAmount">Max Amount:</label>
+      <input type="number" id="maxAmount" placeholder="Max amount">
+    </div>
+
+    <!-- Modal Buttons -->
+    <div class="modal-buttons">
+      <button id="applyFilter">Apply Filter</button>
+      <button id="cancelFilter">Cancel</button>
+    </div>
+
+    <!-- Filtered Total
+    <p id="filteredTotal">Total: $0.00</p> -->
+  </div>
+</div>
+
+
+
+
+
+
+    <!-- 📊 Dashboard Overview -->
+    <section id="overview">
+      <div class="icon">
+        <img src="/static/icons/wallet.svg" alt="Wallet Icon" />
+        <h1>My Wallet Overview</h1>
+      </div>
+      <div class="totals">
+        <p>Total Income: ${{ summary.total_income }}</p>
+        |
+        <p>Total Expenses: ${{ summary.total_expense }}</p>
+        |
+        <p>
+          Balance:
+          <span>
+            ${{ summary.balance }}
+          </span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 📜 Expenses Table -->
+    <section id="records">
+      <div class="filter-buttons">
+        <div class="header-row">
+          <div class="icon">
+            <img src="/static/icons/transactions.svg" alt="Transactions Icon" />
+            <h2>Recent Transactions</h2> 
+          </div> 
+        </div>
+
+        <!-- Filters -->
+        
+        <div class="btns">
+          <a href="/add" class="add-btn">
+            <img src="/static/icons/add-expense.svg" alt="Add Icon">
+            Add Transaction
+          </a> | 
+          <button>All</button>
+          <button>Income</button>
+          <button>Expense</button> |
+        </div>
+
+        <!-- Category Dropdown -->
+        <div class="category-filter">
+          <select id="categorySelect">
+            <option value="none" disabled selected>Filter by Category</option>
+            <option value="all">All</option>
+            {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+          </select> |
+        </div>
+
+        <!-- <div class="spacer">
+          <p>
+            {% if expenses|length == 1 %}
+            {{ expenses|length }} transaction
+            {% else %}
+            {{ expenses|length }} transactions
+            {% endif %}
+          </p>
+        </div> -->
+
+        <!-- Advanced Filters -->
+
+       <div class="advanced-filters category-filter">
+        <select name="advancedFilters" id="advancedFilters">
+          <option value="none" disabled>Advanced Filters</option>
+          <option value="sort-by-amount" >Filter by Amount</option>
+          <option value="sort-by-date">Filter by Date</option>
+        </select>
+        </div>
+
+    </div>
+
+
+      <div class="display_total_amount">
+        <p></p>
+      </div>
+
+    <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Type</th>
+            <th>Amount ($)</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>   
+          <tbody>
+          {% if expenses %} {% for expense in expenses %}
+          <tr>
+            <!-- <td>{{ expense.id }}</td> -->
+            <td>{{ expense.type }}</td>
+            <td>{{ expense.amount }}</td>
+            <td>{{ expense.category }}</td>
+            <td class="description">{{ expense.description if expense.description else "No description"}}</td>
+            <td>{{ expense.date }}</td>
+            <td class="actions">
+              <a href="/edit/{{ expense.id }}">Edit</a> | 
+              <a href="/delete/{{ expense.id }}" onclick="return confirm('Are you sure you want to delete this transaction?');">Delete</a>
+
+            </td>
+          </tr>
+          {% endfor %} {% else %}
+          <tr>
+            <td colspan="7" style="text-align: center">
+              👀 Your wallet is empty… time to add some expenses or income!
+            </td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </tbody>
+    </table>
+  </div>
+
+
+      
+    </section>
+
+
+
+    
+
+  </body>
+</html>

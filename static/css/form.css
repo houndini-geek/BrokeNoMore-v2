@@ -1,0 +1,100 @@
+@import "root.css";
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em ;
+}
+
+.icon{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon img{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+form {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 30rem;
+    padding: 3em;
+  
+}
+
+form label {
+    padding: 0.7em;
+}
+form select, textarea, input {
+    width: 100%;
+    padding: 0.7em;
+    resize: none;
+    outline: none;
+    border: 1px solid var(--neutral-dark);
+    background-color: var(--neutral-light);
+    border-radius: 0.5em;
+    font-weight: 700;
+}
+
+form textarea {
+    height: 5rem;
+    margin-bottom: 1em;
+}
+
+form .action-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em;
+}
+
+form .action-btns a {
+    text-decoration: none;
+    color: var(--error-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+form .action-btns button {
+    padding: 0.7em 2em;
+    border: none;
+    background-color: var(--neutral-dark);
+    color: var(--neutral-light);
+    font-size: 1.1rem;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+
+form .quick-categories {
+
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    padding-left: 0.7em;
+    align-items: center;
+    gap: 0.5em;
+}
+
+form .quick-categories button {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+

@@ -1,0 +1,308 @@
+@import "root.css";
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+  width: var(--max-width);
+  top: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--neutral-light);
+  position: fixed;
+  padding: 1rem;
+  text-align: center;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: left;
+  gap: 2rem;
+}
+
+nav ul li a {
+  color: var(--neutral-dark);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+nav ul li a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+#amountFilterModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Stay in place */
+  z-index: 1001; /* Sit on top */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30rem; /* Full width */
+  height: max-content;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: var(--neutral-light);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+}
+
+#amountFilterModal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#amountFilterModal .modal-content {
+  width: 100%;
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+#amountFilterModal .modal-content label {
+  width: 100%;
+  text-align: left;
+}
+
+#amountFilterModal .modal-content select,
+input {
+  width: 30em;
+  display: block;
+  padding: 0.5em;
+  margin: 0.5em 0 1em 0;
+  border: 1px solid var(--neutral-dark);
+  border-radius: 0.3em;
+  background-color: transparent;
+  outline: none;
+  color: var(--secondary-color);
+}
+
+#amountFilterModal .modal-content .modal-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  padding: 1em;
+}
+
+.modal-buttons button {
+  outline: none;
+  font-weight: 700;
+  padding: 0.7em;
+  border: none;
+  width: 10em;
+}
+
+.modal-buttons #applyFilter {
+  background-color: var(--neutral-dark);
+  color: var(--neutral-light);
+  border: none;
+  cursor: pointer;
+  transition: letter-spacing 0.3s ease;
+}
+
+.modal-buttons #cancelFilter {
+  background-color: transparent;
+}
+
+#overview {
+  margin: 10% auto 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: start;
+}
+
+#overview .icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+#overview .icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-right: 1rem;
+}
+
+#overview .icon h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#overview .totals {
+  display: flex;
+  justify-content: left;
+  gap: 0.5em;
+}
+
+#records {
+  margin: 2rem auto;
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 1rem;
+}
+
+#records .icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding-bottom: 2em;
+}
+#records .icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+#records .category-filter select {
+  padding: 0.4em 1em;
+  font-size: 1rem;
+  border: 1px solid var(--neutral-dark);
+  border-radius: 9999px;
+  background-color: transparent;
+  outline: none;
+  color: var(--secondary-color);
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+#records .filter-buttons {
+  width: fit-content;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.filter-buttons .btns {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-left: 2em;
+
+  gap: 0.5em;
+}
+
+.filter-buttons .btns button {
+  background-color: transparent;
+  overflow: hidden;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  color: var(--secondary-color);
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-buttons .btns .add-btn {
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  background-color: var(--accent-color);
+  color: var(--neutral-dark);
+  border: none;
+  cursor: pointer;
+  transition: letter-spacing 0.3s ease;
+}
+
+.filter-buttons .btns .add-btn:hover {
+  letter-spacing: 0.5px;
+  transition-timing-function: cubic-bezier(0.39, 0.505, 0.565, 0.6), 0.3s;
+}
+
+.filter-buttons .btns button:hover {
+  background-color: var(--neutral-dark);
+  color: white;
+}
+
+.filter-buttons .btns button.active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.filter-buttons .btns button:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.tbl-header {
+  background-color: var(--neutral-dark);
+
+}
+
+.tbl-content {
+  height: 700px;
+  overflow-x: auto;
+  margin-top: 0px;
+
+}
+
+.tbl-content .actions {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.tbl-content .actions a {
+  outline: none;
+  text-decoration: none;
+  color: var(--neutral-dark);
+}
+
+th {
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--neutral-light);
+  text-transform: uppercase;
+}
+
+td {
+  padding: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-weight: 800;
+  text-align: left;
+  font-size: 12px;
+  background-color: #dcdcdc;
+  color: var(--secondary-color);
+}
